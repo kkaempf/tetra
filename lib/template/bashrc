@@ -22,3 +22,4 @@ PS1="\e[1;33mdry-running\e[m:\w\$ "
 # add default commandline switches
 alias ant='<%= ant_commandline %>'
 alias mvn='<%= mvn_commandline %>'
+alias gradle='<%= gradle_commandline %>'

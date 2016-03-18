@@ -37,11 +37,16 @@ module Tetra
       mvn_path = kit.find_executable("mvn")
       mvn_commandline = Tetra::Mvn.commandline("$PROJECT_PREFIX", mvn_path)
 
+      gradle_path = kit.find_executable("gradle")
+      gradle_commandline = Tetra::Gradle.commandline("$PROJECT_PREFIX", gradle_path)
+
       lines.map do |line|
         if line =~ /^ant( .*)?$/
           line.gsub(/^ant/, ant_commandline)
         elsif line =~ /^mvn( .*)?$/
           line.gsub(/^mvn/, "#{mvn_commandline} -o")
+        elsif line =~ /^gradle( .*)?$/
+          line.gsub(/^gradle/, "#{gradle_commandline} --offline")
         else
           line
         end

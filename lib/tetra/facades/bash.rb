@@ -22,7 +22,10 @@ module Tetra
           mvn_path = kit.find_executable("mvn")
           mvn_commandline = Tetra::Mvn.commandline(@project.full_path, mvn_path)
 
-          bashrc_content = Bashrc.new(history_file.path, ant_commandline, mvn_commandline).to_s
+          gradle_path = kit.find_executable("gradle")
+          gradle_commandline = Tetra::Gradle.commandline(@project.full_path, gradle_path)
+
+          bashrc_content = Bashrc.new(history_file.path, ant_commandline, mvn_commandline, gradle_commandline).to_s
           log.debug "writing bashrc file: #{bashrc_file.path}"
           log.debug bashrc_content
 
@@ -47,11 +50,13 @@ module Tetra
     attr_reader :history_file
     attr_reader :ant_commandline
     attr_reader :mvn_commandline
+    attr_reader :gradle_commandline
 
-    def initialize(history_file, ant_commandline, mvn_commandline)
+    def initialize(history_file, ant_commandline, mvn_commandline, gradle_commandline)
       @history_file = history_file
       @ant_commandline = ant_commandline
       @mvn_commandline = mvn_commandline
+      @gradle_commandline = gradle_commandline
     end
 
     def to_s
