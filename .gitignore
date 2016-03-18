@@ -25,3 +25,5 @@ doc/
 # integration test files
 integration-tests/commons-collections
 
+# editor backups
+*~
