@@ -13,7 +13,7 @@ module Tetra
       home_path = File.join(project_path, "kit", "gradle")
 
       options = [
-        "--gradle-user-home #{home_path}"
+        "--gradle-user-home=#{home_path}"
       ]
 
       "#{full_path} #{options.join(' ')}"
